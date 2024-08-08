@@ -81,6 +81,15 @@ void demsolanXxuathien(int a[], int n, int x) {
 
     printf("So lan xuat hien cua %d trong mang la: %d\n", x, count);
 }
+// dem tren a co bao nhieu phan tu lón hon x
+void Cau6(int a[], int n, int x) {
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] > x)
+            count++;
+    }
+    printf("So phan tu lon hon %d la %d\n", x, count);
+}
 void menu() {
     printf("\n--- Menu ---\n");
     printf("1. Nhap mang/ xuat mang a\n");
@@ -89,7 +98,7 @@ void menu() {
     printf("4(4.1). Tim kiem tuyen tinh\n");
     printf("5(4.2). Tim kiem nhi phan\n");
     printf("6.(5). Dem tren a co bao nhieu phan tu x\n");
-   
+    printf("7.(6). Dem so phan tu lon hon x\n");
 }
 int main() {
     menu();
@@ -148,6 +157,11 @@ int main() {
             printf("Nhap phan tu x can dem: ");
             scanf_s("%d", &x);
             demsolanXxuathien(a, n, x);
+            break;
+        case 7:
+            printf("Nhap vao gia tri x: ");
+            scanf_s("%d", &x);
+            Cau6(a, n, x);
             break;
         case 12:
             printf("Thoat chuong trinh.\n");
