@@ -16,10 +16,26 @@ void xuatMang(int a[], int n) {
     }
 }
 
+int timMax(int a[], int n) {
+    int max = a[0];
+    for (int i = 1; i < n; i++) {
+        max = (max > a[i]) ? max : a[i];
+    }
+    return max;
+}
+
+int timMin(int a[], int n) {
+    int min = a[0];
+    for (int i = 1; i < n; i++) {
+        min = (min < a[i]) ? min : a[i];
+    }
+    return min;
+}
 
 void menu() {
     printf("\n--- Menu ---\n");
     printf("1. Nhap mang/ xuat mang a\n");
+    printf("2. Tim gia tri max/min\n");
  
    
 }
@@ -46,7 +62,10 @@ int main() {
             nhapVaoMang(a, n);
             xuatMang(a, n);
             break;
-      
+        case 2:
+            printf("Gia tri max: %d\n", timMax(a, n));
+            printf("Gia tri min: %d\n", timMin(a, n));
+            break;
         case 12:
             printf("Thoat chuong trinh.\n");
             break;
