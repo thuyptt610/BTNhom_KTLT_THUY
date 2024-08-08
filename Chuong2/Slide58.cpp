@@ -65,6 +65,16 @@ int tatCaLaChan(int arr[], int n) {
     }
     return 1;
 }
+//5. Kiem tra so chan le xen ke
+int chanLeXenKe(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        if ((arr[i] % 2 == 0 && arr[i + 1] % 2 == 0) ||
+            (arr[i] % 2 != 0 && arr[i + 1] % 2 != 0)) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 int main() {
     int arr[20]; // Mang vi du
@@ -105,6 +115,15 @@ int main() {
             }
             else {
                 printf("Khong phai tat ca cac phan tu trong mang deu la so chan.\n");
+            }
+            break;
+            break;
+        case 5:
+            if (chanLeXenKe(arr, n)) {
+                printf("Mang co day so chan le xen ke.\n");
+            }
+            else {
+                printf("Mang khong co day so chan le xen ke.\n");
             }
             break;
         case 0:
