@@ -142,7 +142,24 @@ void isSoHoanThien(int a[], int n) {
         printf("Khong co so hoan thien nao trong mang.");
     }
      printf("\n");
-}void menu() {
+}
+//xuat cac phan tu chan le trong mang a
+void xuatvitriChanLe(int a[], int n) {
+    //chan
+    printf("Cac phan tu o vi tri chan trong mang la: ");
+    for (int i = 0; i < n; i += 2) { 
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+
+    // Xu?t các ph?n t? ? v? trí l?
+    printf("Cac phan tu o vi tri le trong mang la: ");
+    for (int i = 1; i < n; i += 2) { 
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+void menu() {
     printf("\n========== Menu=============\n");
     printf("1. Nhap mang/ xuat mang a\n");
     printf("2. Tim gia tri max/min\n");
@@ -154,6 +171,7 @@ void isSoHoanThien(int a[], int n) {
     printf("8.(7). Tinh tong cac phan tu cua a\n");
     printf("9.(8). Xuat cac so nguyen to trong a\n");
     printf("10.(9). Xuat cac so hoan thien trong a\n");
+    printf("11.(10). Xuat cac vi tri chan le\n");
     printf("5========================================\n");
 }
 int main() {
@@ -227,6 +245,9 @@ int main() {
             break;
         case 10:
             isSoHoanThien(a, n);
+            break;
+        case 11:
+            xuatvitriChanLe(a, n);
             break;
         case 12:
             printf("Thoat chuong trinh.\n");
