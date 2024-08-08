@@ -15,7 +15,7 @@ bool chuSoDauLe(int num) {
 	return num % 2 != 0;
 }
 
-// Hàm tính tổng các phần tử có chữ số đầu là chữ số lẻ
+//1. Hàm tính tổng các phần tử có chữ số đầu là chữ số lẻ
 int tongChuSoDauLe(int matrix[][MAX_COL], int m, int n) {
 	int tong = 0;
 	for (int i = 0; i < m; i++) {
@@ -39,7 +39,7 @@ bool laSoHoanThien(int num) {
 	return tong == num;
 }
 
-// Hàm liệt kê các số hoàn thiện trong ma trận
+// 2.Hàm liệt kê các số hoàn thiện trong ma trận
 void lietKeSoHoanThien(int matrix[][MAX_COL], int m, int n) {
 	bool timThay = false;
 	printf("Cac so hoan thien trong ma tran:\n");
@@ -69,7 +69,7 @@ int tongLonHonTriTuyetDoiSau(int matrix[][MAX_COL], int m, int n) {
 	return tong;
 }
 
-// Hàm tính tổng giá trị trên dòng k của ma trận
+//4. Hàm tính tổng giá trị trên dòng k của ma trận
 int tongDauDong(int matrix[][MAX_COL], int m, int n, int k) {
 	int tong = 0;
 	if (k >= 0 && k < m) {
@@ -83,7 +83,7 @@ int tongDauDong(int matrix[][MAX_COL], int m, int n, int k) {
 	return tong;
 }
 
-// Hàm tính tổng các giá trị nằm trên biên của ma trận
+// 5.Hàm tính tổng các giá trị nằm trên biên của ma trận
 int tongBien(int matrix[][MAX_COL], int m, int n) {
 	int tong = 0;
 	for (int i = 0; i < m; i++) {
@@ -106,6 +106,49 @@ int demGiaTriXuatHien(int matrix[][MAX_COL], int m, int n, int x) {
 	}
 	return dem;
 }
+
+// Hàm kiểm tra số nguyên tố
+bool laSoNguyenTo(int num) {
+	if (num <= 1) return false;
+	if (num == 2) return true;
+	if (num % 2 == 0) return false;
+	for (int i = 3; i <= sqrt((float)num); i += 2) {
+		if (num % i == 0) return false;
+	}
+	return true;
+}
+
+//7. Hàm đếm số lượng các phần tử là số chẵn, số lẻ, số âm, số dương, số nguyên tố
+void demSoLuongPhanTu(int matrix[][MAX_COL], int m, int n) {
+	int soChan = 0, soLe = 0, soAm = 0, soDuong = 0, soNguyenTo = 0;
+
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (matrix[i][j] % 2 == 0) {
+				soChan++;
+			}
+			else {
+				soLe++;
+			}
+			if (matrix[i][j] < 0) {
+				soAm++;
+			}
+			else if (matrix[i][j] > 0) {
+				soDuong++;
+			}
+			if (laSoNguyenTo(matrix[i][j])) {
+				soNguyenTo++;
+			}
+		}
+	}
+
+	printf("So luong so chan: %d\n", soChan);
+	printf("So luong so le: %d\n", soLe);
+	printf("So luong so am: %d\n", soAm);
+	printf("So luong so duong: %d\n", soDuong);
+	printf("So luong so nguyen to: %d\n", soNguyenTo);
+}
+
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
 	int m, n;
@@ -168,6 +211,9 @@ int main() {
 			printf("Gia tri %d xuat hien %d lan.\n", x, demGiaTriXuatHien(matrix, m, n, x));
 		}
 		break;
+		case 7:
+			demSoLuongPhanTu(matrix, m, n);
+			break;
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
