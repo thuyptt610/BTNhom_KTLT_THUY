@@ -1,4 +1,4 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -42,7 +42,7 @@ void nhapSinhVien(SinhVien* sv) {
 		nhapMonHoc(&sv->monHoc[i]);
 	}
 
-	// T�nh ?i?m trung b�nh t�ch l?y
+	// Tính điểm trung bình tích lũy
 	float tongDiem = 0.0;
 	int tongTinChi = 0;
 	for (int i = 0; i < MAX_MON_HOC; i++) {
@@ -65,7 +65,16 @@ void xuatSinhVien(const SinhVien* sv) {
 	}
 	printf("Diem trung binh tich luy: %.2f\n", sv->diemTrungBinhTichLuy);
 }
+//cau3: 
 
+int timSinhVien(const SinhVien ds[], int n, const char* maSoSv) {
+	for (int i = 0; i < n; i++) {
+		if (strcmp(ds[i].maSoSv, maSoSv) == 0) {
+			return i;
+		}
+	}
+	return -1;  // Không tìm thấy
+}
 
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
@@ -104,6 +113,20 @@ int main() {
 				printf("\n");
 			}
 			break;
+			break;
+		case 3: {
+			char maSoSv[10];
+			printf("Nhap ma so sinh vien can tim: ");
+			scanf_s("%s", maSoSv, sizeof(maSoSv));
+			int idx = timSinhVien(ds, n, maSoSv);
+			if (idx != -1) {
+				xuatSinhVien(&ds[idx]);
+			}
+			else {
+				printf("Khong tim thay sinh vien.\n");
+			}
+			break;
+		}
 		case 0:
 			printf("Thoat chuong trinh.\n");
 			break;
