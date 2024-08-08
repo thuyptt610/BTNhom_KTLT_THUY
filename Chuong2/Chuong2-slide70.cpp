@@ -74,6 +74,9 @@ int main() {
 		case 2:
 			xuat_danh_sach_sinh_vien(ds, n);
 			break;
+		case 3:
+			printf("Diem tong ket da duoc tinh trong qua trinh nhap du lieu.\n");
+			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
 			break;
