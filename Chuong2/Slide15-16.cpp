@@ -159,6 +159,24 @@ void xuatvitriChanLe(int a[], int n) {
     }
     printf("\n");
 }
+// ghep mang
+void ghepMang(int b[], int m, int c[], int n, int a[]) {
+    int i = 0, j = 0, k = 0;
+    while (i < m && j < n) {
+        if (b[i] < c[j]) {
+            a[k++] = b[i++];
+        }
+        else {
+            a[k++] = c[j++];
+        }
+    }
+    while (i < m) {
+        a[k++] = b[i++];
+    }
+    while (j < n) {
+        a[k++] = c[j++];
+    }
+}
 void menu() {
     printf("\n========== Menu=============\n");
     printf("1. Nhap mang/ xuat mang a\n");
@@ -172,6 +190,7 @@ void menu() {
     printf("9.(8). Xuat cac so nguyen to trong a\n");
     printf("10.(9). Xuat cac so hoan thien trong a\n");
     printf("11.(10). Xuat cac vi tri chan le\n");
+    printf("12.(12). Ghep mang\n");
     printf("5========================================\n");
 }
 int main() {
@@ -249,7 +268,27 @@ int main() {
         case 11:
             xuatvitriChanLe(a, n);
             break;
-        case 12:
+        case 12: {
+            int m, p;
+            int b[50], c[50];
+            printf("Nhap so luong phan tu cua mang b: ");
+            scanf_s("%d", &m);
+            printf("Nhap cac phan tu cua mang b (tang dan):\n");
+            for (int i = 0; i < m; i++) {
+                scanf_s("%d", &b[i]);
+            }
+            printf("Nhap so luong phan tu cua mang c: ");
+            scanf_s("%d", &p);
+            printf("Nhap cac phan tu cua mang c (tang dan):\n");
+            for (int i = 0; i < p; i++) {
+                scanf_s("%d", &c[i]);
+            }
+            ghepMang(b, m, c, p, a);
+            printf("Mang a sau khi ghep la:\n");
+            xuatMang(a, m + p);
+            break;
+        }
+        case 13:
             printf("Thoat chuong trinh.\n");
             break;
         default:
