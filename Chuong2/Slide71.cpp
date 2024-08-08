@@ -85,7 +85,16 @@ int timSinhVienCaoNhat(const SinhVien ds[], int n) {
 	}
 	return idx;
 }
-
+//5
+int timSinhVienThapNhat(const SinhVien ds[], int n) {
+	int idx = 0;
+	for (int i = 1; i < n; i++) {
+		if (ds[i].diemTrungBinhTichLuy < ds[idx].diemTrungBinhTichLuy) {
+			idx = i;
+		}
+	}
+	return idx;
+}
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
 	int n = 0;
@@ -140,6 +149,12 @@ int main() {
 		case 4: {
 			int idx = timSinhVienCaoNhat(ds, n);
 			printf("Sinh vien co diem trung binh cao nhat:\n");
+			xuatSinhVien(&ds[idx]);
+			break;
+		}
+		case 5: {
+			int idx = timSinhVienThapNhat(ds, n);
+			printf("Sinh vien co diem trung binh thap nhat:\n");
 			xuatSinhVien(&ds[idx]);
 			break;
 		}
