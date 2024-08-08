@@ -68,6 +68,21 @@ int tongLonHonTriTuyetDoiSau(int matrix[][MAX_COL], int m, int n) {
 	}
 	return tong;
 }
+
+// Hàm tính tổng giá trị trên dòng k của ma trận
+int tongDauDong(int matrix[][MAX_COL], int m, int n, int k) {
+	int tong = 0;
+	if (k >= 0 && k < m) {
+		for (int j = 0; j < n; j++) {
+			tong += matrix[k][j];
+		}
+	}
+	else {
+		printf("Dong %d khong ton tai.\n", k);
+	}
+	return tong;
+}
+
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
 	int m, n;
@@ -110,6 +125,15 @@ int main() {
 		case 3:
 			printf("Tong cac phan tu lon hon tri tuyet doi cua phan tu lien sau no: %d\n", tongLonHonTriTuyetDoiSau(matrix, m, n));
 			break;
+
+		case 4:
+		{
+			int k;
+			printf("Nhap dong k de tinh tong: ");
+			scanf_s("%d", &k);
+			printf("Tong gia tri tren dong %d: %d\n", k, tongDauDong(matrix, m, n, k));
+		}
+		break;
 
 
 		default:
