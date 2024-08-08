@@ -83,6 +83,18 @@ int tongDauDong(int matrix[][MAX_COL], int m, int n, int k) {
 	return tong;
 }
 
+// Hàm tính tổng các giá trị nằm trên biên của ma trận
+int tongBien(int matrix[][MAX_COL], int m, int n) {
+	int tong = 0;
+	for (int i = 0; i < m; i++) {
+		tong += matrix[i][0] + matrix[i][n - 1]; // Cột biên trái và phải
+	}
+	for (int j = 1; j < n - 1; j++) {
+		tong += matrix[0][j] + matrix[m - 1][j]; // Hàng biên trên và dưới
+	}
+	return tong;
+}
+
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
 	int m, n;
@@ -134,7 +146,9 @@ int main() {
 			printf("Tong gia tri tren dong %d: %d\n", k, tongDauDong(matrix, m, n, k));
 		}
 		break;
-
+		case 5:
+			printf("Tong cac gia tri nam tren bien cua ma tran: %d\n", tongBien(matrix, m, n));
+			break;
 
 		default:
 			printf("Lua chon khong hop le!\n");
