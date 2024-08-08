@@ -72,6 +72,21 @@ PhanSo tinhTong(PhanSo ds[], int n) {
 }
 
 
+PhanSo tichPS(PhanSo ps1, PhanSo ps2) {
+    PhanSo ketqua;
+    ketqua.tu = ps1.tu * ps2.tu;
+    ketqua.mau = ps1.mau * ps2.mau;
+    rutGon(&ketqua);
+    return ketqua;
+}
+
+PhanSo tinhTich(PhanSo ds[], int n) {
+    PhanSo tich = ds[0];
+    for (int i = 1; i < n; i++) {
+        tich = tichPS(tich, ds[i]);
+    }
+    return tich;
+}
 
 int main() {
     int n;
@@ -133,6 +148,15 @@ int main() {
             if (n > 0) {
                 PhanSo tong = tinhTong(ds, n);
                 printf("Tong cac phan so: %d/%d\n", tong.tu, tong.mau);
+            }
+            else {
+                printf("Danh sach rong.\n");
+            }
+            break;
+        case 6:
+            if (n > 0) {
+                PhanSo tich = tinhTich(ds, n);
+                printf("Tich cac phan so: %d/%d\n", tich.tu, tich.mau);
             }
             else {
                 printf("Danh sach rong.\n");
