@@ -27,6 +27,13 @@ void nhapDanhSachPhanSo(PhanSo ds[], int n) {
     }
 }
 
+void xuatDanhSachPhanSo(PhanSo ds[], int n) {
+    for (int i = 0; i < n; i++) {
+        printf("%d/%d ", ds[i].tu, ds[i].mau);
+    }
+    printf("\n");
+}
+
 
 
 int main() {
@@ -61,7 +68,13 @@ int main() {
             }
             break;
 
+        case 2:
+            printf("Danh sach phan so: ");
+            xuatDanhSachPhanSo(ds, n);
+            break;
+
        
+
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
