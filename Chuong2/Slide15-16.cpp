@@ -90,8 +90,17 @@ void Cau6(int a[], int n, int x) {
     }
     printf("So phan tu lon hon %d la %d\n", x, count);
 }
+// 7. Tong phan tu cua mang a
+void Tongmang(int a[], int n) {
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += a[i];
+    }
+
+    printf("Tong mang la: %d\n", sum);
+}
 void menu() {
-    printf("\n--- Menu ---\n");
+    printf("\n========== Menu=============\n");
     printf("1. Nhap mang/ xuat mang a\n");
     printf("2. Tim gia tri max/min\n");
     printf("3. Dem so luong chan/le\n");
@@ -99,6 +108,8 @@ void menu() {
     printf("5(4.2). Tim kiem nhi phan\n");
     printf("6.(5). Dem tren a co bao nhieu phan tu x\n");
     printf("7.(6). Dem so phan tu lon hon x\n");
+    printf("8.(7). Tinh tong cac phan tu cua a\n");
+    printf("5========================================\n");
 }
 int main() {
     menu();
@@ -162,6 +173,9 @@ int main() {
             printf("Nhap vao gia tri x: ");
             scanf_s("%d", &x);
             Cau6(a, n, x);
+            break;
+        case 8:
+            Tongmang(a, n);
             break;
         case 12:
             printf("Thoat chuong trinh.\n");
