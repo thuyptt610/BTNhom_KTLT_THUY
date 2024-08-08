@@ -99,6 +99,26 @@ void Tongmang(int a[], int n) {
 
     printf("Tong mang la: %d\n", sum);
 }
+
+int kiemTraNguyenTo(int x) {
+    if (x < 2) return 0;
+    for (int i = 2; i <= x / 2; i++) {
+        if (x % i == 0)
+            return 0;
+    }
+    return 1;
+}
+// xuat cac so nguyen to
+void Cau8(int a[], int n) {
+    printf("\nSo nguyen to trong mang: ");
+    for (int i = 0; i < n; i++) {
+        if (kiemTraNguyenTo(a[i])) {
+            printf("%d ", a[i]);
+        }
+    }
+    printf("\n");
+}
+
 void menu() {
     printf("\n========== Menu=============\n");
     printf("1. Nhap mang/ xuat mang a\n");
@@ -109,6 +129,7 @@ void menu() {
     printf("6.(5). Dem tren a co bao nhieu phan tu x\n");
     printf("7.(6). Dem so phan tu lon hon x\n");
     printf("8.(7). Tinh tong cac phan tu cua a\n");
+    printf("9.(8). Xuat cac so nguyen to trong a\n");
     printf("5========================================\n");
 }
 int main() {
@@ -176,6 +197,9 @@ int main() {
             break;
         case 8:
             Tongmang(a, n);
+            break;
+        case 9:
+            Cau8(a, n);
             break;
         case 12:
             printf("Thoat chuong trinh.\n");
