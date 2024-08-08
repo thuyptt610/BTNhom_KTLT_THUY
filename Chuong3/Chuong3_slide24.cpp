@@ -72,6 +72,36 @@ void tim_kiem_ten(const char* ho_ten, const char* ten) {
 		printf("Ten '%s' khong ton tai trong chuoi '%s'.\n", ten, ho_ten);
 	}
 }
+// cat chuoi ho lot va ten
+void cat_ho_lot_ten(const char* ho_ten, char* ho, char* lot, char* ten) {
+	char temp[200];
+	size_t ho_size = 100;
+	size_t lot_size = 100;
+	size_t ten_size = 100;
+
+	strcpy_s(temp, sizeof(temp), ho_ten);
+	char* last_space = strrchr(temp, ' ');
+	if (last_space) {
+		strcpy_s(ten, ten_size, last_space + 1);
+		*last_space = '\0';
+	}
+	else {
+		ten[0] = '\0';
+	}
+
+	char* first_space = strchr(temp, ' ');
+	if (first_space) {
+		strncpy_s(ho, ho_size, temp, first_space - temp);
+		ho[first_space - temp] = '\0';
+
+		strcpy_s(lot, lot_size, first_space + 1);
+	}
+	else {
+		ho[0] = '\0';
+		lot[0] = '\0';
+	}
+}
+
 int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
@@ -136,6 +166,19 @@ int main() {
 			printf("Nhap ten can tim: ");
 			scanf_s(" %[^\n]", ten, sizeof(ten));
 			tim_kiem_ten(ho_ten, ten);
+			break;
+		}
+		case 6: {
+			char ho_ten[200], ho[100], lot[100], ten[100];
+			printf("Nhap chuoi ho ten: ");
+			while (getchar() != '\n');
+			fgets(ho_ten, sizeof(ho_ten), stdin);
+			ho_ten[strcspn(ho_ten, "\n")] = '\0';
+			cat_ho_lot_ten(ho_ten, ho, lot, ten);
+
+			printf("Ho: %s\n", ho);
+			printf("Lot: %s\n", lot);
+			printf("Ten: %s\n", ten);
 			break;
 		}
 		default:
