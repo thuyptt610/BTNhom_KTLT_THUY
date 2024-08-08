@@ -32,10 +32,22 @@ int timMin(int a[], int n) {
     return min;
 }
 
+void demChanLe(int a[], int n) {
+    int chan = 0, le = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] % 2 == 0)
+            chan++;
+        else
+            le++;
+    }
+    printf("\nSo phan tu chan la: %d\n", chan);
+    printf("So phan tu le la: %d\n", le);
+}
 void menu() {
     printf("\n--- Menu ---\n");
     printf("1. Nhap mang/ xuat mang a\n");
     printf("2. Tim gia tri max/min\n");
+    printf("3. Dem so luong chan/le\n");
  
    
 }
@@ -65,6 +77,9 @@ int main() {
         case 2:
             printf("Gia tri max: %d\n", timMax(a, n));
             printf("Gia tri min: %d\n", timMin(a, n));
+            break;
+        case 3:
+            demChanLe(a, n);
             break;
         case 12:
             printf("Thoat chuong trinh.\n");
