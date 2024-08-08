@@ -133,6 +133,24 @@ void sapXepSinhVien(SinhVien ds[], int n, int tang) {
 		}
 	}
 }
+//9
+void xepLoaiHocTap(const SinhVien* sv) {
+	if (sv->diemTrungBinhTichLuy >= 8.5) {
+		printf("Xep loai: Xuat sac\n");
+	}
+	else if (sv->diemTrungBinhTichLuy >= 7.0) {
+		printf("Xep loai: Gioi\n");
+	}
+	else if (sv->diemTrungBinhTichLuy >= 5.5) {
+		printf("Xep loai: Kha\n");
+	}
+	else if (sv->diemTrungBinhTichLuy >= 4.0) {
+		printf("Xep loai: Trung binh\n");
+	}
+	else {
+		printf("Xep loai: Yeu\n");
+	}
+}
 
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
@@ -220,6 +238,19 @@ int main() {
 			for (int i = 0; i < n; i++) {
 				xuatSinhVien(&ds[i]);
 				printf("\n");
+			}
+			break;
+		}
+		case 9: {
+			char maSoSv[10];
+			printf("Nhap ma so sinh vien can xep loai: ");
+			scanf_s("%s", maSoSv, sizeof(maSoSv));
+			int idx = timSinhVien(ds, n, maSoSv);
+			if (idx != -1) {
+				xepLoaiHocTap(&ds[idx]);
+			}
+			else {
+				printf("Khong tim thay sinh vien.\n");
 			}
 			break;
 		}
