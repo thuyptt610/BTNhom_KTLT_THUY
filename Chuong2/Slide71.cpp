@@ -106,6 +106,20 @@ void themSinhVien(SinhVien ds[], int* n, const SinhVien* sv) {
 		printf("Danh sach sinh vien da day.\n");
 	}
 }
+//7
+void xoaSinhVien(SinhVien ds[], int* n, const char* maSoSv) {
+	int idx = timSinhVien(ds, *n, maSoSv);
+	if (idx != -1) {
+		for (int i = idx; i < *n - 1; i++) {
+			ds[i] = ds[i + 1];
+		}
+		(*n)--;
+	}
+	else {
+		printf("Khong tim thay sinh vien.\n");
+	}
+}
+
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
 	int n = 0;
@@ -174,6 +188,13 @@ int main() {
 			printf("Nhap thong tin sinh vien can them:\n");
 			nhapSinhVien(&sv);
 			themSinhVien(ds, &n, &sv);
+			break;
+		}
+		case 7: {
+			char maSoSv[10];
+			printf("Nhap ma so sinh vien can xoa: ");
+			scanf_s("%s", maSoSv, sizeof(maSoSv));
+			xoaSinhVien(ds, &n, maSoSv);
 			break;
 		}
 		case 0:
