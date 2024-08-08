@@ -27,7 +27,35 @@ int tongChuSoDauLe(int matrix[][MAX_COL], int m, int n) {
 	}
 	return tong;
 }
+// Hàm kiểm tra số hoàn thiện
+bool laSoHoanThien(int num) {
+	if (num <= 0) return false;
+	int tong = 0;
+	for (int i = 1; i <= num / 2; i++) {
+		if (num % i == 0) {
+			tong += i;
+		}
+	}
+	return tong == num;
+}
 
+// Hàm liệt kê các số hoàn thiện trong ma trận
+void lietKeSoHoanThien(int matrix[][MAX_COL], int m, int n) {
+	bool timThay = false;
+	printf("Cac so hoan thien trong ma tran:\n");
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			if (laSoHoanThien(matrix[i][j])) {
+				printf("%d ", matrix[i][j]);
+				timThay = true;
+			}
+		}
+	}
+	if (!timThay) {
+		printf("Khong co so hoan thien nao.\n");
+	}
+	printf("\n");
+}
 
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
@@ -64,6 +92,9 @@ int main() {
 		switch (luaChon) {
 		case 1:
 			printf("Tong cac phan tu co chu so dau la chu so le: %d\n", tongChuSoDauLe(matrix, m, n));
+			break;
+		case 2:
+			lietKeSoHoanThien(matrix, m, n);
 			break;
 
 
