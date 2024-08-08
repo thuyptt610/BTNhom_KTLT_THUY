@@ -46,6 +46,18 @@ int tatCaLaLe(int num) {
     }
     return 1;
 }
+// 3.Tim vi tri cuoi cung cua gia tri lon nhat
+int viTriLonNhatCuoiCung(int arr[], int n) {
+    int maxVal = arr[0], maxIndex = 0;
+    for (int i = 1; i < n; i++) {
+        if (arr[i] >= maxVal) {
+            maxVal = arr[i];
+            maxIndex = i;
+        }
+    }
+    return maxIndex;
+}
+
 int main() {
     int arr[20]; // Mang vi du
     int n = 10;
@@ -75,6 +87,9 @@ int main() {
                 }
             }
             printf("\n");
+            break;
+        case 3:
+            printf("Vi tri so lon nhat cuoi cung trong mang: %d\n", viTriLonNhatCuoiCung(arr, n));
             break;
         case 0:
             printf("Thoat chuong trinh.\n");
