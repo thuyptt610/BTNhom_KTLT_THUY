@@ -58,6 +58,14 @@ int viTriLonNhatCuoiCung(int arr[], int n) {
     return maxIndex;
 }
 
+//4. Kiem tra tat ca cac phan tu deu la so chan
+int tatCaLaChan(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] % 2 != 0) return 0;
+    }
+    return 1;
+}
+
 int main() {
     int arr[20]; // Mang vi du
     int n = 10;
@@ -90,6 +98,14 @@ int main() {
             break;
         case 3:
             printf("Vi tri so lon nhat cuoi cung trong mang: %d\n", viTriLonNhatCuoiCung(arr, n));
+            break;
+        case 4:
+            if (tatCaLaChan(arr, n)) {
+                printf("Tat ca cac phan tu trong mang deu la so chan.\n");
+            }
+            else {
+                printf("Khong phai tat ca cac phan tu trong mang deu la so chan.\n");
+            }
             break;
         case 0:
             printf("Thoat chuong trinh.\n");
