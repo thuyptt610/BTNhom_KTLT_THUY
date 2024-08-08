@@ -36,7 +36,14 @@ void nhap_danh_sach_sinh_vien(SinhVien ds[], int* n) {
 		ds[i].diem_tong_ket = (float)(ds[i].diem_tieu_luan * 0.3 + ds[i].diem_thi * 0.7);
 	}
 }
-
+// Hàm xuất danh sách sinh viên
+void xuat_danh_sach_sinh_vien(SinhVien ds[], int n) {
+	printf("Danh sach sinh vien:\n");
+	printf("STT\tMa So\tHo Ten\t\t\tDiem Tieu Luan\tDiem Thi\tDiem Tong Ket\n");
+	for (int i = 0; i < n; i++) {
+		printf("%d\t%s\t%s\t\t%.2f\t\t%.2f\t\t%.2f\n", ds[i].stt, ds[i].ma_so_sv, ds[i].ho_ten, ds[i].diem_tieu_luan, ds[i].diem_thi, ds[i].diem_tong_ket);
+	}
+}
 
 int main() {
 	SinhVien ds[MAX_STUDENTS];
@@ -64,7 +71,9 @@ int main() {
 		case 1:
 			nhap_danh_sach_sinh_vien(ds, &n);
 			break;
-		
+		case 2:
+			xuat_danh_sach_sinh_vien(ds, n);
+			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
 			break;
