@@ -151,7 +151,20 @@ void xepLoaiHocTap(const SinhVien* sv) {
 		printf("Xep loai: Yeu\n");
 	}
 }
-
+//10
+void thongKeMonDauRo(const SinhVien* sv) {
+	int monDau = 0, monRo = 0;
+	for (int i = 0; i < MAX_MON_HOC; i++) {
+		if (sv->monHoc[i].diem >= 5.0) {
+			monDau++;
+		}
+		else {
+			monRo++;
+		}
+	}
+	printf("So mon dau: %d\n", monDau);
+	printf("So mon ro: %d\n", monRo);
+}
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
 	int n = 0;
@@ -248,6 +261,19 @@ int main() {
 			int idx = timSinhVien(ds, n, maSoSv);
 			if (idx != -1) {
 				xepLoaiHocTap(&ds[idx]);
+			}
+			else {
+				printf("Khong tim thay sinh vien.\n");
+			}
+			break;
+		}
+		case 10: {
+			char maSoSv[10];
+			printf("Nhap ma so sinh vien can thong ke: ");
+			scanf_s("%s", maSoSv, sizeof(maSoSv));
+			int idx = timSinhVien(ds, n, maSoSv);
+			if (idx != -1) {
+				thongKeMonDauRo(&ds[idx]);
 			}
 			else {
 				printf("Khong tim thay sinh vien.\n");
