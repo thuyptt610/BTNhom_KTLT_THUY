@@ -35,6 +35,17 @@ int demNguyenTo(int arr[], int n) {
     }
     return count;
 }
+
+//2. Kiem tra tat ca cac chu so la so le
+int tatCaLaLe(int num) {
+    num = abs(num);
+    while (num > 0) {
+        int digit = num % 10;
+        if (digit % 2 == 0) return 0;
+        num /= 10;
+    }
+    return 1;
+}
 int main() {
     int arr[20]; // Mang vi du
     int n = 10;
@@ -56,7 +67,15 @@ int main() {
             printf("So phan tu la so nguyen to trong mang: %d\n", demNguyenTo(arr, n));
             break;
        
-       
+        case 2:
+            printf("Cac phan tu co tat ca chu so la so le: ");
+            for (int i = 0; i < n; i++) {
+                if (tatCaLaLe(arr[i])) {
+                    printf("%d ", arr[i]);
+                }
+            }
+            printf("\n");
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
