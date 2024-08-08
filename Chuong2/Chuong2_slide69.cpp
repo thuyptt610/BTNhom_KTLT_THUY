@@ -93,7 +93,21 @@ void xuatNghichDao(PhanSo ds[], int n) {
     }
     printf("\n");
 }
+void swap(PhanSo* a, PhanSo* b) {
+    PhanSo temp = *a;
+    *a = *b;
+    *b = temp;
+}
 
+void sapXepTangDan(PhanSo ds[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (giaTri(ds[i]) > giaTri(ds[j])) {
+                swap(&ds[i], &ds[j]);
+            }
+        }
+    }
+}
 int main() {
     int n;
     PhanSo ds[50];
@@ -172,7 +186,11 @@ int main() {
             printf("Danh sach nghich dao cac phan so: ");
             xuatNghichDao(ds, n);
             break;
-
+        case 8:
+            sapXepTangDan(ds, n);
+            printf("Danh sach phan so sau khi sap xep tang dan: ");
+            xuatDanhSachPhanSo(ds, n);
+            break;
         case 0:
             printf("Thoat chuong trinh.\n");
             break;
