@@ -70,6 +70,17 @@ int timKiemNhiPhan(int a[], int n, int x) {
     }
     return -1; // Khong tim thay
 }
+// dem so lan phan tu x xuat hien tren a
+void demsolanXxuathien(int a[], int n, int x) {
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        if (a[i] == x) {
+            count++;
+        }
+    }
+
+    printf("So lan xuat hien cua %d trong mang la: %d\n", x, count);
+}
 void menu() {
     printf("\n--- Menu ---\n");
     printf("1. Nhap mang/ xuat mang a\n");
@@ -77,6 +88,7 @@ void menu() {
     printf("3. Dem so luong chan/le\n");
     printf("4(4.1). Tim kiem tuyen tinh\n");
     printf("5(4.2). Tim kiem nhi phan\n");
+    printf("6.(5). Dem tren a co bao nhieu phan tu x\n");
    
 }
 int main() {
@@ -131,6 +143,11 @@ int main() {
             else {
                 printf("Gia tri %d khong co trong mang.\n", x);
             }
+            break;
+        case 6:
+            printf("Nhap phan tu x can dem: ");
+            scanf_s("%d", &x);
+            demsolanXxuathien(a, n, x);
             break;
         case 12:
             printf("Thoat chuong trinh.\n");
