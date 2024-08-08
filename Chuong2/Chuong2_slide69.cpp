@@ -56,24 +56,40 @@ PhanSo timPhanSoMin(PhanSo ds[], int n) {
     }
     return min;
 }
+PhanSo tongPS(PhanSo ps1, PhanSo ps2) {
+    PhanSo ketqua;
+    ketqua.tu = ps1.tu * ps2.mau + ps2.tu * ps1.mau;
+    ketqua.mau = ps1.mau * ps2.mau;
+    rutGon(&ketqua);
+    return ketqua;
+}
+PhanSo tinhTong(PhanSo ds[], int n) {
+    PhanSo tong = ds[0];
+    for (int i = 1; i < n; i++) {
+        tong = tongPS(tong, ds[i]);
+    }
+    return tong;
+}
+
+
 
 int main() {
     int n;
     PhanSo ds[50];
     int luaChon;
 
-        printf("\n---------- MENU ----------\n");
-        printf("1. Nhap danh sach phan so\n");
-        printf("2. Xuat danh sach phan so\n");
-        printf("3. Tim phan so lon nhat\n");
-        printf("4. Tim phan so nho nhat\n");
-        printf("5. Tinh tong cac phan so\n");
-        printf("6. Tinh tich cac phan so\n");
-        printf("7. Xuat nghich dao cac phan so\n");
-        printf("8. Sap xep phan so tang dan\n");
-        printf("9. Sap xep phan so giam dan\n");
-        printf("0. Thoat\n");
-        printf("----------------------------\n");
+    printf("\n---------- MENU ----------\n");
+    printf("1. Nhap danh sach phan so\n");
+    printf("2. Xuat danh sach phan so\n");
+    printf("3. Tim phan so lon nhat\n");
+    printf("4. Tim phan so nho nhat\n");
+    printf("5. Tinh tong cac phan so\n");
+    printf("6. Tinh tich cac phan so\n");
+    printf("7. Xuat nghich dao cac phan so\n");
+    printf("8. Sap xep phan so tang dan\n");
+    printf("9. Sap xep phan so giam dan\n");
+    printf("0. Thoat\n");
+    printf("----------------------------\n");
      do {
         printf("Nhap lua chon cua ban: ");
         scanf_s("%d", &luaChon);
@@ -108,6 +124,15 @@ int main() {
             if (n > 0) {
                 PhanSo min = timPhanSoMin(ds, n);
                 printf("Phan so nho nhat: %d/%d\n", min.tu, min.mau);
+            }
+            else {
+                printf("Danh sach rong.\n");
+            }
+            break;
+        case 5:
+            if (n > 0) {
+                PhanSo tong = tinhTong(ds, n);
+                printf("Tong cac phan so: %d/%d\n", tong.tu, tong.mau);
             }
             else {
                 printf("Danh sach rong.\n");
