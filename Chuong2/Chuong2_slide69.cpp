@@ -47,6 +47,15 @@ PhanSo timPhanSoMax(PhanSo ds[], int n) {
     }
     return max;
 }
+PhanSo timPhanSoMin(PhanSo ds[], int n) {
+    PhanSo min = ds[0];
+    for (int i = 1; i < n; i++) {
+        if (giaTri(ds[i]) < giaTri(min)) {
+            min = ds[i];
+        }
+    }
+    return min;
+}
 
 int main() {
     int n;
@@ -90,6 +99,15 @@ int main() {
             if (n > 0) {
                 PhanSo max = timPhanSoMax(ds, n);
                 printf("Phan so lon nhat: %d/%d\n", max.tu, max.mau);
+            }
+            else {
+                printf("Danh sach rong.\n");
+            }
+            break;
+        case 4:
+            if (n > 0) {
+                PhanSo min = timPhanSoMin(ds, n);
+                printf("Phan so nho nhat: %d/%d\n", min.tu, min.mau);
             }
             else {
                 printf("Danh sach rong.\n");
