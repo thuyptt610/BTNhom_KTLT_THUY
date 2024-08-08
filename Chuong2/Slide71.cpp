@@ -119,6 +119,20 @@ void xoaSinhVien(SinhVien ds[], int* n, const char* maSoSv) {
 		printf("Khong tim thay sinh vien.\n");
 	}
 }
+//8
+
+void sapXepSinhVien(SinhVien ds[], int n, int tang) {
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if ((tang && ds[i].diemTrungBinhTichLuy > ds[j].diemTrungBinhTichLuy) ||
+				(!tang && ds[i].diemTrungBinhTichLuy < ds[j].diemTrungBinhTichLuy)) {
+				SinhVien temp = ds[i];
+				ds[i] = ds[j];
+				ds[j] = temp;
+			}
+		}
+	}
+}
 
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
@@ -195,6 +209,18 @@ int main() {
 			printf("Nhap ma so sinh vien can xoa: ");
 			scanf_s("%s", maSoSv, sizeof(maSoSv));
 			xoaSinhVien(ds, &n, maSoSv);
+			break;
+		}
+		case 8: {
+			printf("1. Sap xep tang dan\n2. Sap xep giam dan\nNhap lua chon: ");
+			int tang;
+			scanf_s("%d", &tang);
+			sapXepSinhVien(ds, n, tang == 1);
+			printf("Danh sach sinh vien sau khi sap xep:\n");
+			for (int i = 0; i < n; i++) {
+				xuatSinhVien(&ds[i]);
+				printf("\n");
+			}
 			break;
 		}
 		case 0:
