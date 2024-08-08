@@ -51,6 +51,20 @@ void nhapSinhVien(SinhVien* sv) {
 	}
 	sv->diemTrungBinhTichLuy = tongDiem / tongTinChi;
 }
+void xuatMonHoc(const MonHoc* monHoc) {
+	printf("%-10s %-50s %d %.2f\n", monHoc->maMon, monHoc->tenMon, monHoc->soTinChi, monHoc->diem);
+}
+
+void xuatSinhVien(const SinhVien* sv) {
+	printf("Ma so sinh vien: %s\n", sv->maSoSv);
+	printf("Ho ten: %s\n", sv->hoTen);
+	printf("Thong tin cac mon hoc:\n");
+	printf("%-10s %-50s %-10s %s\n", "Ma Mon", "Ten Mon", "Tin Chi", "Diem");
+	for (int i = 0; i < MAX_MON_HOC; i++) {
+		xuatMonHoc(&sv->monHoc[i]);
+	}
+	printf("Diem trung binh tich luy: %.2f\n", sv->diemTrungBinhTichLuy);
+}
 
 
 int main() {
@@ -83,7 +97,13 @@ int main() {
 				nhapSinhVien(&ds[i]);
 			}
 			break;
-	
+		case 2:
+			for (int i = 0; i < n; i++) {
+				printf("Thong tin sinh vien %d:\n", i + 1);
+				xuatSinhVien(&ds[i]);
+				printf("\n");
+			}
+			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
 			break;
