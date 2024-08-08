@@ -75,6 +75,16 @@ int timSinhVien(const SinhVien ds[], int n, const char* maSoSv) {
 	}
 	return -1;  // Không tìm thấy
 }
+//4
+int timSinhVienCaoNhat(const SinhVien ds[], int n) {
+	int idx = 0;
+	for (int i = 1; i < n; i++) {
+		if (ds[i].diemTrungBinhTichLuy > ds[idx].diemTrungBinhTichLuy) {
+			idx = i;
+		}
+	}
+	return idx;
+}
 
 int main() {
 	SinhVien ds[MAX_SINH_VIEN];
@@ -125,6 +135,12 @@ int main() {
 			else {
 				printf("Khong tim thay sinh vien.\n");
 			}
+			break;
+		}
+		case 4: {
+			int idx = timSinhVienCaoNhat(ds, n);
+			printf("Sinh vien co diem trung binh cao nhat:\n");
+			xuatSinhVien(&ds[idx]);
 			break;
 		}
 		case 0:
