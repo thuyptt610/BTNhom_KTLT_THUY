@@ -13,6 +13,20 @@ int kiem_tra_chuoi_ky_so(const char* s) {
 	return 1;  
 }
 
+//2. dem khoang trang chuoi
+int demKhoangTrang(const char* s)
+{
+	int count = 0;
+	while (*s)
+	{
+		if (*s == ' ')
+		{
+			count++;
+		}
+		s++;
+	}
+	return count;
+}
 
 
 int main() {
@@ -45,7 +59,13 @@ int main() {
 			}
 			break;
 		}
-
+		case 2: {
+			char s[100];
+			printf("Nhap chuoi can kiem tra: ");
+			scanf_s(" %[^\n]", s, sizeof(s));  // ??c chu?i có kho?ng tr?ng
+			printf("So khoang trang trong chuoi la: %d", demKhoangTrang(s));
+			break;
+		}
 
 	
 		default:
