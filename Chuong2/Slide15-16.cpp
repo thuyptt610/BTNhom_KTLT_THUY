@@ -118,8 +118,31 @@ void Cau8(int a[], int n) {
     }
     printf("\n");
 }
+int laSoHoanThien(int num) {
+    int sum = 0;
+    for (int i = 1; i <= num / 2; i++) {
+        if (num % i == 0) {
+            sum += i;
+        }
+    }
+   return sum == num;
+}
+// Hàm xu?t các s? hoàn thi?n trong m?ng
+void isSoHoanThien(int a[], int n) {
+    printf("Cac so hoan thien trong mang la: ");
+    int found = 0;
+    for (int i = 0; i < n; i++) {
+        if (laSoHoanThien(a[i])) {
+            printf("%d ", a[i]);
+            found = 1;
+        }
+    }
 
-void menu() {
+    if (!found) {
+        printf("Khong co so hoan thien nao trong mang.");
+    }
+     printf("\n");
+}void menu() {
     printf("\n========== Menu=============\n");
     printf("1. Nhap mang/ xuat mang a\n");
     printf("2. Tim gia tri max/min\n");
@@ -130,6 +153,7 @@ void menu() {
     printf("7.(6). Dem so phan tu lon hon x\n");
     printf("8.(7). Tinh tong cac phan tu cua a\n");
     printf("9.(8). Xuat cac so nguyen to trong a\n");
+    printf("10.(9). Xuat cac so hoan thien trong a\n");
     printf("5========================================\n");
 }
 int main() {
@@ -200,6 +224,9 @@ int main() {
             break;
         case 9:
             Cau8(a, n);
+            break;
+        case 10:
+            isSoHoanThien(a, n);
             break;
         case 12:
             printf("Thoat chuong trinh.\n");
