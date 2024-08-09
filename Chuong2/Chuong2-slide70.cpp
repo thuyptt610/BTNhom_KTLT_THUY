@@ -66,7 +66,22 @@ void tim_sinh_vien_cao_nhat_thap_nhat(SinhVien ds[], int n) {
 	printf("STT: %d\nMa so: %s\nHo ten: %s\nDiem tong ket: %.2f\n",
 		ds[thap_nhat_idx].stt, ds[thap_nhat_idx].ma_so_sv, ds[thap_nhat_idx].ho_ten, ds[thap_nhat_idx].diem_tong_ket);
 }
+// Hàm đếm số sinh viên đạt và không đạt
+void dem_sinh_vien_dat_khong_dat(SinhVien ds[], int n) {
+	int dat = 0, khong_dat = 0;
 
+	for (int i = 0; i < n; i++) {
+		if (ds[i].diem_tong_ket >= 5.0) {
+			dat++;
+		}
+		else {
+			khong_dat++;
+		}
+	}
+
+	printf("So sinh vien dat: %d\n", dat);
+	printf("So sinh vien khong dat: %d\n", khong_dat);
+}
 
 int main() {
 	SinhVien ds[MAX_STUDENTS];
@@ -102,6 +117,9 @@ int main() {
 			break;
 		case 4:
 			tim_sinh_vien_cao_nhat_thap_nhat(ds, n);
+			break;
+		case 5:
+			dem_sinh_vien_dat_khong_dat(ds, n);
 			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
