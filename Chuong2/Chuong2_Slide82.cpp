@@ -85,6 +85,43 @@ void lietKeDongToanGiaTriChan(int matrix[][MAX_COL], int m, int n) {
 	}
 }
 
+// Bài 4: Tìm giá trị xuất hiện nhiều nhất trong ma trận
+void timGiaTriXuatHienNhieuNhat(int matrix[][MAX_COL], int m, int n) {
+	int maxCount = 0;
+	int giaTriMax = matrix[0][0];
+
+	// Tạo mảng đếm tần suất
+	int count[MAX_ROW * MAX_COL] = { 0 };
+	int giaTri[MAX_ROW * MAX_COL];
+	int index = 0;
+
+	for (int i = 0; i < m; i++) {
+		for (int j = 0; j < n; j++) {
+			bool found = false;
+			for (int k = 0; k < index; k++) {
+				if (giaTri[k] == matrix[i][j]) {
+					count[k]++;
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				giaTri[index] = matrix[i][j];
+				count[index++] = 1;
+			}
+		}
+	}
+
+	for (int i = 0; i < index; i++) {
+		if (count[i] > maxCount) {
+			maxCount = count[i];
+			giaTriMax = giaTri[i];
+		}
+	}
+
+	printf("Gia tri xuat hien nhieu nhat la: %d\n", giaTriMax);
+}
+
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
 	int m, n;
@@ -126,6 +163,10 @@ int main() {
 			break;
 		case 3:
 			lietKeDongToanGiaTriChan(matrix, m, n);
+			break;
+
+		case 4:
+			timGiaTriXuatHienNhieuNhat(matrix, m, n);
 			break;
 		default:
 			printf("Lua chon khong hop le!\n");
