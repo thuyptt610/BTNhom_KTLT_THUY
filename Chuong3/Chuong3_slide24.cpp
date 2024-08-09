@@ -156,6 +156,29 @@ void liet_ke_ky_tu(const char* s) {
 		}
 	}
 }
+// 10. Tim ky tu xuat hien nhieu nhat trong chuoi
+void tim_ky_tu_xuat_hien_nhieu_nhat(const char* s) {
+	int tan_suat[256] = { 0 };  // Mảng lưu tần suất xuất hiện của các ký tự
+	int max = 0;  // Tần suất cao nhất
+	char ky_tu = '\0';  // Ký tự xuất hiện nhiều nhất
+
+	// Tính tần suất xuất hiện của từng ký tự
+	for (int i = 0; s[i]; i++) {
+		tan_suat[(unsigned char)s[i]]++;
+		if (tan_suat[(unsigned char)s[i]] > max) {
+			max = tan_suat[(unsigned char)s[i]];
+			ky_tu = s[i];
+		}
+	}
+
+	// In kết quả
+	if (max > 0) {
+		printf("Ky tu xuat hien nhieu nhat la '%c' voi tan suat %d.\n", ky_tu, max);
+	}
+	else {
+		printf("Khong co ky tu nao trong chuoi.\n");
+	}
+}
 int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
@@ -274,6 +297,18 @@ int main() {
 			s[strcspn(s, "\n")] = '\0';
 			liet_ke_ky_tu(s);
 			break;
+		}
+		case 10:
+		{
+			char s[100];
+
+			// Nhập chuỗi từ người dùng
+			printf("Nhap chuoi: ");
+			scanf_s(" %[^\n]", s, sizeof(s));  // Đọc chuỗi có khoảng trắng
+
+			// Tìm và in ký tự xuất hiện nhiều nhất
+			tim_ky_tu_xuat_hien_nhieu_nhat(s);
+			return 0;
 		}
 		default:
 			printf("Lua chon khong hop le!\n");
