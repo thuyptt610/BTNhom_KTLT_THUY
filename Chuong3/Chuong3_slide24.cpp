@@ -1,19 +1,43 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <string.h>
 #include <ctype.h>
 #include <string.h>
 #define _CRT_SECURE_NO_WARNINGS
-
-//1. H�m ki?m tra chu?i ch? ch?a k� s?
+// Hàm kiểm tra chuỗi chỉ chứa ký số
 int kiem_tra_chuoi_ky_so(const char* s) {
 	while (*s) {
-		if (!isdigit(*s)) return 0;  
+		if (!isdigit(*s)) return 0;  // Nếu không phải ký số, trả về 0
 		s++;
 	}
-	return 1;  
+	return 1;  // Trả về 1 nếu toàn ký số
 }
 
-//2. dem khoang trang chuoi
+
+void chuyen_hoa_chu_cai_dau_tu(char* s) {
+	int la_bat_dau = 1;
+	while (*s) {
+		if (la_bat_dau) {
+			*s = toupper(*s);
+			la_bat_dau = 0;
+		}
+		else {
+			*s = tolower(*s);
+		}
+		if (*s == ' ') la_bat_dau = 1;
+		s++;
+	}
+}
+
+void tim_kiem_ten(const char* ho_ten, const char* ten) {
+	const char* ptr = strstr(ho_ten, ten);
+	if (ptr) {
+		printf("Ten '%s' ton tai trong chuoi '%s'.\n", ten, ho_ten);
+	}
+	else {
+		printf("Ten '%s' khong ton tai trong chuoi '%s'.\n", ten, ho_ten);
+	}
+}
+
 int demKhoangTrang(const char* s)
 {
 	int count = 0;
@@ -27,7 +51,7 @@ int demKhoangTrang(const char* s)
 	}
 	return count;
 }
-//3. xoa khoang trang thua trong chuoi
+
 void xoa_khoang_trang_thua(char* s) {
 	char* dst = s;
 	int space_found = 0;
@@ -47,32 +71,21 @@ void xoa_khoang_trang_thua(char* s) {
 	}
 	*dst = '\0';
 }
-// 4. Chuyen chu cai dau thanh chu in hoa
-void chuyen_hoa_chu_cai_dau_tu(char* s) {
-	int la_bat_dau = 1;
-	while (*s) {
-		if (la_bat_dau) {
-			*s = toupper(*s);
-			la_bat_dau = 0;
-		}
-		else {
-			*s = tolower(*s);
-		}
-		if (*s == ' ') la_bat_dau = 1;
-		s++;
+
+void chen_chuoi_tai_vi_tri(char* s, const char* chuoi_chen, int vi_tri) {
+	int len_s = strlen(s);
+	int len_chen = strlen(chuoi_chen);
+
+	if (vi_tri < 0 || vi_tri > len_s) {
+		printf("Vi tri chen khong hop le.\n");
+		return;
 	}
+
+	memmove(s + vi_tri + len_chen, s + vi_tri, len_s - vi_tri + 1);
+	memcpy(s + vi_tri, chuoi_chen, len_chen);
 }
-//5. tim kiem theo ten
-void tim_kiem_ten(const char* ho_ten, const char* ten) {
-	const char* ptr = strstr(ho_ten, ten);
-	if (ptr) {
-		printf("Ten '%s' ton tai trong chuoi '%s'.\n", ten, ho_ten);
-	}
-	else {
-		printf("Ten '%s' khong ton tai trong chuoi '%s'.\n", ten, ho_ten);
-	}
-}
-// cat chuoi ho lot va ten
+
+
 void cat_ho_lot_ten(const char* ho_ten, char* ho, char* lot, char* ten) {
 	char temp[200];
 	size_t ho_size = 100;
@@ -106,7 +119,7 @@ int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
 	printf("1. Kiem tra chuoi co chua toan ky so\n");
-	printf("2. Viet ham ?em co bao nhieu khoang trang trong chuoi\n");
+	printf("2. Viet ham đem co bao nhieu khoang trang trong chuoi\n");
 	printf("3. Xoa khoang trang thua trong chuoi\n");
 	printf("4. Chuyen doi ky tu dau tien cua moi tu thanh chu in hoa\n");
 	printf("5. Tim kiem ten trong chuoi ho ten\n");
@@ -123,7 +136,7 @@ int main() {
 		case 1: {
 			char s[100];
 			printf("Nhap chuoi can kiem tra: ");
-			scanf_s(" %[^\n]", s, sizeof(s));  
+			scanf_s(" %[^\n]", s, sizeof(s));  // Đọc chuỗi có khoảng trắng
 			if (kiem_tra_chuoi_ky_so(s)) {
 				printf("Chuoi chua toan ky so.\n");
 			}
@@ -132,10 +145,12 @@ int main() {
 			}
 			break;
 		}
+
+
 		case 2: {
 			char s[100];
 			printf("Nhap chuoi can kiem tra: ");
-			scanf_s(" %[^\n]", s, sizeof(s));  // ??c chu?i c� kho?ng tr?ng
+			scanf_s(" %[^\n]", s, sizeof(s));  // Đọc chuỗi có khoảng trắng
 			printf("So khoang trang trong chuoi la: %d", demKhoangTrang(s));
 			break;
 		}
@@ -159,6 +174,7 @@ int main() {
 			printf("Chuoi sau khi chuyen doi: %s\n", ho_ten);
 			break;
 		}
+
 		case 5: {
 			char ho_ten[100], ten[50];
 			printf("Nhap chuoi ho ten: ");
@@ -181,6 +197,25 @@ int main() {
 			printf("Ten: %s\n", ten);
 			break;
 		}
+		case 7: {
+			char s[100], chuoi_chen[50];
+			int vi_tri;
+			printf("Nhap chuoi ban dau: ");
+			while (getchar() != '\n');
+			fgets(s, sizeof(s), stdin);
+			s[strcspn(s, "\n")] = '\0';
+			printf("Nhap chuoi can chen: ");
+			fgets(chuoi_chen, sizeof(chuoi_chen), stdin);
+			chuoi_chen[strcspn(chuoi_chen, "\n")] = '\0';
+			printf("Nhap vi tri chen: ");
+			scanf_s("%d", &vi_tri);
+			chen_chuoi_tai_vi_tri(s, chuoi_chen, vi_tri);
+			printf("Chuoi sau khi chen: %s\n", s);
+			break;
+		}
+
+	
+		
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
