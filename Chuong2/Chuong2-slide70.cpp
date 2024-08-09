@@ -107,6 +107,18 @@ void tinh_diem_he_4(SinhVien ds[], int n) {
 	}
 }
 
+// Hàm sắp xếp danh sách sinh viên tăng/ giảm theo điểm tổng kết
+void sap_xep_danh_sach(SinhVien ds[], int n, int tang) {
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if ((tang && ds[i].diem_tong_ket > ds[j].diem_tong_ket) || (!tang && ds[i].diem_tong_ket < ds[j].diem_tong_ket)) {
+				SinhVien temp = ds[i];
+				ds[i] = ds[j];
+				ds[j] = temp;
+			}
+		}
+	}
+}
 int main() {
 	SinhVien ds[MAX_STUDENTS];
 	int n, lua_chon;
@@ -146,6 +158,14 @@ int main() {
 			dem_sinh_vien_dat_khong_dat(ds, n);
 			break;
 		case 6:
+			tinh_diem_he_4(ds, n);
+			xuat_danh_sach_sinh_vien(ds, n);
+			break;
+		case 7:
+			printf("1. Sap xep tang dan\n2. Sap xep giam dan\nNhap lua chon: ");
+			int tang;
+			scanf_s("%d", &tang);
+			sap_xep_danh_sach(ds, n, tang == 1);
 			tinh_diem_he_4(ds, n);
 			xuat_danh_sach_sinh_vien(ds, n);
 			break;
