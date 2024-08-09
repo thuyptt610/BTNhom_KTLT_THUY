@@ -119,6 +119,17 @@ void sap_xep_danh_sach(SinhVien ds[], int n, int tang) {
 		}
 	}
 }
+// Hàm tính điểm trung bình của tất cả sinh viên
+float tinh_diem_trung_binh(SinhVien ds[], int n) {
+	float tong_diem = 0.0;
+
+	for (int i = 0; i < n; i++) {
+		tong_diem += ds[i].diem_tong_ket;
+	}
+
+	return tong_diem / n;
+}
+
 int main() {
 	SinhVien ds[MAX_STUDENTS];
 	int n, lua_chon;
@@ -168,6 +179,9 @@ int main() {
 			sap_xep_danh_sach(ds, n, tang == 1);
 			tinh_diem_he_4(ds, n);
 			xuat_danh_sach_sinh_vien(ds, n);
+			break;
+		case 8:
+			printf("Diem trung binh cua tat ca sinh vien: %.2f\n", tinh_diem_trung_binh(ds, n));
 			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
