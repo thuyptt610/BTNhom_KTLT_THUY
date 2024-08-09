@@ -36,12 +36,13 @@ void nhap_danh_sach_sinh_vien(SinhVien ds[], int* n) {
 		ds[i].diem_tong_ket = (float)(ds[i].diem_tieu_luan * 0.3 + ds[i].diem_thi * 0.7);
 	}
 }
+
 // Hàm xuất danh sách sinh viên
 void xuat_danh_sach_sinh_vien(SinhVien ds[], int n) {
 	printf("Danh sach sinh vien:\n");
-	printf("STT\tMa So\tHo Ten\t\t\tDiem Tieu Luan\tDiem Thi\tDiem Tong Ket\n");
+	printf("STT\tMa So\tHo Ten\t\tDiem Tieu Luan\tDiem Thi\tDiem Tong Ket\tDiem He 4\n");
 	for (int i = 0; i < n; i++) {
-		printf("%d\t%s\t%s\t\t%.2f\t\t%.2f\t\t%.2f\n", ds[i].stt, ds[i].ma_so_sv, ds[i].ho_ten, ds[i].diem_tieu_luan, ds[i].diem_thi, ds[i].diem_tong_ket);
+		printf("%d\t%s\t%s\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f\n", ds[i].stt, ds[i].ma_so_sv, ds[i].ho_ten, ds[i].diem_tieu_luan, ds[i].diem_thi, ds[i].diem_tong_ket, ds[i].diem_he_4);
 	}
 }
 
@@ -66,6 +67,7 @@ void tim_sinh_vien_cao_nhat_thap_nhat(SinhVien ds[], int n) {
 	printf("STT: %d\nMa so: %s\nHo ten: %s\nDiem tong ket: %.2f\n",
 		ds[thap_nhat_idx].stt, ds[thap_nhat_idx].ma_so_sv, ds[thap_nhat_idx].ho_ten, ds[thap_nhat_idx].diem_tong_ket);
 }
+
 // Hàm đếm số sinh viên đạt và không đạt
 void dem_sinh_vien_dat_khong_dat(SinhVien ds[], int n) {
 	int dat = 0, khong_dat = 0;
@@ -83,6 +85,28 @@ void dem_sinh_vien_dat_khong_dat(SinhVien ds[], int n) {
 	printf("So sinh vien khong dat: %d\n", khong_dat);
 }
 
+// Hàm tính điểm hệ 4
+void tinh_diem_he_4(SinhVien ds[], int n) {
+	for (int i = 0; i < n; i++) {
+		float diem = ds[i].diem_tong_ket;
+		if (diem >= 8.5) {
+			ds[i].diem_he_4 = 4.0;
+		}
+		else if (diem >= 7.0) {
+			ds[i].diem_he_4 = 3.0;
+		}
+		else if (diem >= 5.5) {
+			ds[i].diem_he_4 = 2.0;
+		}
+		else if (diem >= 4.0) {
+			ds[i].diem_he_4 = 1.0;
+		}
+		else {
+			ds[i].diem_he_4 = 0.0;
+		}
+	}
+}
+
 int main() {
 	SinhVien ds[MAX_STUDENTS];
 	int n, lua_chon;
@@ -94,7 +118,7 @@ int main() {
 	printf("3. Tinh diem tong ket\n");
 	printf("4. Tim sinh vien co diem cao nhat va thap nhat\n");
 	printf("5. Dem so sinh vien dat va khong dat\n");
-	printf("6. Qui doi diem sang he 4\n");
+	printf("6. Quy doi diem tong ket sang he 4\n");
 	printf("7. Sap xep danh sach\n");
 	printf("8. Tinh diem trung binh\n");
 	printf("9. Ghi danh sach sinh vien vao file\n");
@@ -120,6 +144,10 @@ int main() {
 			break;
 		case 5:
 			dem_sinh_vien_dat_khong_dat(ds, n);
+			break;
+		case 6:
+			tinh_diem_he_4(ds, n);
+			xuat_danh_sach_sinh_vien(ds, n);
 			break;
 		case 0:
 			printf("Thoat chuong trinh.\n");
