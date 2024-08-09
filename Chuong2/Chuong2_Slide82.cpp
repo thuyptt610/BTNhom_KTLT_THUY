@@ -68,7 +68,22 @@ void lietKeDongNhieuSoHoanThienNhat(int matrix[][MAX_COL], int m, int n) {
 	}
 }
 
-
+// Bài 3: Liệt kê chỉ số các dòng chứa toàn giá trị chẵn
+void lietKeDongToanGiaTriChan(int matrix[][MAX_COL], int m, int n) {
+	printf("Cac dong chua toan gia tri chan:\n");
+	for (int i = 0; i < m; i++) {
+		bool toanChan = true;
+		for (int j = 0; j < n; j++) {
+			if (matrix[i][j] % 2 != 0) {
+				toanChan = false;
+				break;
+			}
+		}
+		if (toanChan) {
+			printf("Dong %d\n", i);
+		}
+	}
+}
 
 int main() {
 	int matrix[MAX_ROW][MAX_COL];
@@ -108,6 +123,9 @@ int main() {
 			break;
 		case 2:
 			lietKeDongNhieuSoHoanThienNhat(matrix, m, n);
+			break;
+		case 3:
+			lietKeDongToanGiaTriChan(matrix, m, n);
 			break;
 		default:
 			printf("Lua chon khong hop le!\n");
