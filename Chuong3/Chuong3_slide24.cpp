@@ -141,6 +141,21 @@ void xoa_chuoi_con(char* chuoi, const char* chuoi_con) {
 		printf("Chuoi con '%s' khong ton tai trong chuoi ban dau.\n", chuoi_con);
 	}
 }
+// 9. liet ke xem ký tự xuất hiện mấy lần
+void liet_ke_ky_tu(const char* s) {
+	int tan_suat[256] = { 0 };
+
+	for (int i = 0; s[i]; i++) {
+		tan_suat[(unsigned char)s[i]]++;
+	}
+
+	printf("Danh sach ky tu va so lan xuat hien:\n");
+	for (int i = 0; i < 256; i++) {
+		if (tan_suat[i] > 0) {
+			printf("Ky tu '%c' xuat hien %d lan.\n", i, tan_suat[i]);
+		}
+	}
+}
 int main() {
 	int lua_chon;
 	printf("----------MeNu------------ :\n");
@@ -251,7 +266,15 @@ int main() {
 			printf("Chuoi sau khi xoa: %s\n", s);
 			break;
 		}
-		
+		case 9: {
+			char s[100];
+			printf("Nhap chuoi: ");
+			while (getchar() != '\n');
+			fgets(s, sizeof(s), stdin);
+			s[strcspn(s, "\n")] = '\0';
+			liet_ke_ky_tu(s);
+			break;
+		}
 		default:
 			printf("Lua chon khong hop le!\n");
 			break;
