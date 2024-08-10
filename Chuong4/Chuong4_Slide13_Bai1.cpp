@@ -8,7 +8,12 @@ int S1(int n) {
         return 1;
     return n + S1(n - 1);
 }
-
+// 2. Hàm đệ quy tính tổng S2(n) = 1 + 1/2 + 1/3 + ... + 1/n
+double S2(int n) {
+    if (n == 1)
+        return 1.0;
+    return 1.0 / n + S2(n - 1);
+}
 
 
 int main() {
@@ -40,7 +45,9 @@ int main() {
         case 1:
             printf("Gia tri cua S1(%d) = %d\n", n, S1(n));
             break;
-        
+        case 2:
+            printf("Gia tri cua S2(%d) = %lf\n", n, S2(n));
+            break;
         }
         printf("\nNhan Enter de tiep tuc...");
         getchar();
