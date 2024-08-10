@@ -83,6 +83,17 @@ double S6_khuDeQuy(int n) {
     }
     return sum;
 }
+//7. Hàm đệ quy tính S7(n) = 1^2 + 2^2 + ... + n^2
+int S7_DQ(int n) {
+    if (n == 1) return 1 * 1;
+    return n * n + S7_DQ(n - 1);
+}
+
+// Hàm khử đệ quy tính S7(n) = 1^2 + 2^2 + ... + n^2
+int S7_khuDeQuy(int n) {
+    return (n * (n + 1) * (2 * n + 1)) / 6;
+}
+
 int main() {
     int choice, n;
     while (1) {
@@ -135,6 +146,9 @@ int main() {
             break;
         case 6:
             printf("Gia tri cua S6(%d) = %lf (de quy) va (khu de quy) = %lf \n", n, S6_DQ(n), S6_khuDeQuy(n));
+            break;
+        case 7:
+            printf("Gia tri cua S7(%d) = %d (de quy) va (khu de quy)= %d \n", n, S7_DQ(n), S7_khuDeQuy(n));
             break;
         }
         printf("\nNhan Enter de tiep tuc...");
