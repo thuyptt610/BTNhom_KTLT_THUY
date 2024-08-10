@@ -1,6 +1,6 @@
 # BTNhom_KTLT_THUY
 BT Nhóm Kĩ thuật lập trình Thúy-Thủy
-
+GV: Nguyễn Trọng Tiến
 -  Members:
    -  [Phạm Thị Thanh Thúy](https://github.com/thuyptt610)
    -  [Phạm Thị Thanh Thủy](https://github.com/pthanhthuy95)
