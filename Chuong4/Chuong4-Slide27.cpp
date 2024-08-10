@@ -27,6 +27,20 @@ double S2_khuDeQuy(int n) {
     }
     return result;
 }
+// Hàm đệ quy tính S3(n) = 1/2 + 2/3 + ... + n/(n+1)
+double S3_DQ(int n) {
+    if (n == 1) return 1.0 / 2;
+    return (double)n / (n + 1) + S3_DQ(n - 1);
+}
+
+// Hàm khử đệ quy tính S3(n) = 1/2 + 2/3 + ... + n/(n+1)
+double S3_khuDeQuy(int n) {
+    double sum = 0.0;
+    for (int i = 1; i <= n; i++) {
+        sum += (double)i / (i + 1);
+    }
+    return sum;
+}
 
 int main() {
     int choice, n;
@@ -68,6 +82,9 @@ int main() {
             break;
         case 2:
             printf("Gia tri cua S2(%d) = %lf (de quy) va (khu de quy) = %lf\n", n, S2_DQ(n), S2_khuDeQuy(n));
+            break;
+        case 3:
+            printf("Gia tri cua S3(%d) = %lf (de quy) va (khu de quy) = %lf \n", n, S3_DQ(n), S3_khuDeQuy(n));
             break;
         }
         printf("\nNhan Enter de tiep tuc...");
