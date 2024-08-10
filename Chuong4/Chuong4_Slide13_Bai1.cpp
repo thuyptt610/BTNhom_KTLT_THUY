@@ -14,6 +14,12 @@ double S2(int n) {
         return 1.0;
     return 1.0 / n + S2(n - 1);
 }
+//3. Hàm đệ quy tính tổng S3(n) = 1*2 + 2*3 + 3*4 + ... + n*(n+1)
+int S3(int n) {
+    if (n == 1)
+        return 1 * 2;
+    return n * (n + 1) + S3(n - 1);
+}
 
 
 int main() {
@@ -47,6 +53,9 @@ int main() {
             break;
         case 2:
             printf("Gia tri cua S2(%d) = %lf\n", n, S2(n));
+            break;
+        case 3:
+            printf("Gia tri cua S3(%d) = %d\n", n, S3(n));
             break;
         }
         printf("\nNhan Enter de tiep tuc...");
