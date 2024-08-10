@@ -103,6 +103,31 @@ int S8_DQ(int n, int current) {
 int S8_khuDeQuy(int n) {
     return (n * (n + 1) * (n + 2)) / 6;
 }
+// Hàm tính giai thừa của số nguyên dương
+int factorial(int x) {
+    if (x == 0 || x == 1) return 1;
+    return x * factorial(x - 1);
+}
+
+//9. Hàm đệ quy tính S9(n) = -1 + 2/2! + 3/3! - 4/4! + ... + (-1)^n * (2*n-1) / (2*n)!
+double S9_DQ(int n) {
+    if (n == 1) return -1;
+    double term = (double)(2 * n - 1) / factorial(2 * n);
+    if (n % 2 == 0) term = -term; // Đổi dấu cho các số hạng chẵn
+    return term + S9_DQ(n - 1);
+}
+
+// Hàm khử đệ quy tính S9(n) = -1 + 2/2! + 3/3! - 4/4! + ... + (-1)^n * (2*n-1) / (2*n)!
+double S9_khuDeQuy(int n) {
+    double sum = -1.0;
+    for (int i = 2; i <= n; i++) {
+        double term = (double)(2 * i - 1) / factorial(2 * i);
+        if (i % 2 == 0) term = -term; // Đổi dấu cho các số hạng chẵn
+        sum += term;
+    }
+    return sum;
+}
+
 int main() {
     int choice, n;
     while (1) {
@@ -161,6 +186,9 @@ int main() {
             break;
         case 8:
             printf("Gia tri cua S8(%d) = %d (de quy) va (khu de quy) = %d \n", n, S8_DQ(n, 1), S8_khuDeQuy(n));
+            break;
+        case 9:
+            printf("Gia tri cua S9(%d) = %lf (de quy) va (khu de quy)= %lf \n", n, S9_DQ(n), S9_khuDeQuy(n));
             break;
         }
         printf("\nNhan Enter de tiep tuc...");
