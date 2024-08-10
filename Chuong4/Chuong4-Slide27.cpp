@@ -127,7 +127,22 @@ double S9_khuDeQuy(int n) {
     }
     return sum;
 }
+//10. Hàm đệ quy tính S10(n) = 1*2!/2 + sqrt(3) + 2*3!/3 + sqrt(4) + ... + n*(n+1)!/(n+1) + sqrt(n+2)
+double S10_DQ(int n, int current) {
+    if (current > n) return 0.0;
+    double term = (current * factorial(current + 1)) / (current + 1);
+    return term + sqrt(current + 2) + S10_DQ(n, current + 1);
+}
 
+// Hàm khử đệ quy tính S10(n) = 1*2!/2 + sqrt(3) + 2*3!/3 + sqrt(4) + ... + n*(n+1)!/(n+1) + sqrt(n+2)
+double S10_khuDeQuy(int n) {
+    double sum = 0.0;
+    for (int i = 1; i <= n; i++) {
+        sum += (i * factorial(i + 1)) / (i + 1);
+        sum += sqrt(i + 2);
+    }
+    return sum;
+}
 int main() {
     int choice, n;
     while (1) {
@@ -189,6 +204,9 @@ int main() {
             break;
         case 9:
             printf("Gia tri cua S9(%d) = %lf (de quy) va (khu de quy)= %lf \n", n, S9_DQ(n), S9_khuDeQuy(n));
+            break;
+        case 10:
+            printf("Gia tri cua S10(%d) = %lf (de quy) va (khu de quy)= %lf \n", n, S10_DQ(n, 1), S10_khuDeQuy(n));
             break;
         }
         printf("\nNhan Enter de tiep tuc...");
